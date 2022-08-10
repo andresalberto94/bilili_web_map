@@ -1,0 +1,118 @@
+#map{
+    height: 90vh;
+    width: 100hw;
+    background-color: white;
+    background-position: top;
+}
+
+.leaflet-popup-content-wrapper{
+  background: none;
+  }
+ 
+.m_g {
+    background: #70ad25; border-radius: 12px;
+}
+
+.m_g div.leaflet-popup-tip{
+ background: #70ad25;
+}
+
+.m_g table{
+    margin: auto;
+}
+.m_g tr{
+    text-align: left;
+}
+.m_g th{
+    padding: 2px; padding-right: 8px;
+}
+ 
+
+.co1 {
+  background: #3182bd; border-radius: 12px;
+}
+
+.co1 div.leaflet-popup-tip{
+background: #3182bd;
+}
+
+.co1 table{
+  margin: auto;
+}
+.co1 tr{
+  text-align: left;
+}
+.co1 th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+.a_c {
+  background: #31a354; border-radius: 12px;
+}
+
+.a_c div.leaflet-popup-tip{
+background: #31a354;
+}
+
+.a_c table{
+  margin: auto;
+}
+.a_c tr{
+  text-align: left;
+}
+.a_c th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+.z_p {
+  background: #a1d99b; border-radius: 12px;
+}
+
+.z_p div.leaflet-popup-tip{
+background: #a1d99b;
+}
+
+.z_p table{
+  margin: auto;
+}
+.z_p tr{
+  text-align: left;
+}
+.z_p th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+
+
+
+
+#html, body, #leaflet-map {
+    height: 100%;
+    margin: 0;
+  }
+  body{
+    position: relative;
+  }
+  .button-line{
+    z-index: 1000;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+  }
+  .pure-button-group{
+    margin-bottom: 10px;
+  }
+  #button-show, #button-hide, #button-fly-osl, #button-fly-ham, #button-fly-par{
+    font-size: 85%;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  #button-fly-osl, #button-fly-ham, #button-fly-par{
+    background: rgb(47, 56, 141);
+  }
+  
+
