@@ -49,43 +49,82 @@ function style4(feature){
         fillOpacity: 0.1
     };
 }
-var a_s= L.geoJson(a_s,{style: style4}).bindPopup(function(layers){
+
+// funciones de zoom y resaltaado de bordes por medio de evento de click //
+function resetHighlight_a_s(z){
+    a_s.resetStyle(z.target);
+    info.update();
+}
+
+function zoomToFeature_a_s(z){
+    map.fitBounds(z.target.getBounds());
+}
+
+function onEachFeature_a_s(feature, layer){
+    layer.on({
+        mouseover: highlightFeature_2,
+        mouseout : resetHighlight_a_s,
+        click:  zoomToFeature_a_s
+    })
+};
+
+var a_s= L.geoJson(a_s,{style: style4, onEachFeature:onEachFeature_a_s }).bindPopup(function(layers){
     return layers.feature.properties.nombre_asp
 }).addTo(map);
 
 
 // area de conservacion
 
-function highlightFeature_2(z){
-    var layer=z.target;
-    layer.setStyle({
-        fillColor:'white',
+// Crear funciones de interacción con el mouse (tema - intema - zoom)
+
+// Función tema de zoom
+function highlight (layer) {
+	layer.setStyle({
         weight: 3,
         color: '#ece2f0',
         dashArray: '',
-        fillOpacity: '0.5'
-    });
-    info.update(layer.feature.properties);
+        fillOpacity: '0'
+	});
+	if (!L.Browser.ie && !L.Browser.opera) {
+		layer.bringToFront();
+	}
 }
 
-var area_conservacion;
-
-function resetHighlight_2(z){
-    area_conservacion.resetStyle(z.target);
-    info.update();
+// Función reseteo de tema
+function dehighlight (layer) {
+  if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
+	  area_conservacion.resetStyle(layer);
+  }
 }
 
-function zoomToFeature_2(z){
-    map.fitBounds(z.target.getBounds());
+// Fución de zoom (fitBounds, flyToBounds)
+function select (layer) {
+  if (selected !== null) {
+	var previous = selected;
+  }
+	map.flyToBounds(layer.getBounds());
+	selected = layer;
+	if (previous) {
+	  dehighlight(previous);
+	}
 }
 
-function onEachFeature_2(feature, layer){
-    layer.on({
-        mouseover: highlightFeature_2,
-        mouseout : resetHighlight_2,
-        click:  zoomToFeature_2
-    })
-};
+var selected = null;
+
+// Función de features parta ingresar en onEachFeature dentor de L.geojson
+function on_feature (feature, layer) {
+	layer.on({
+		'mouseover': function (e) {
+		highlight(e.target);
+		},
+		'mouseout': function (e) {
+		dehighlight(e.target);
+		},
+		'click': function (e) {
+		select(e.target);
+		}
+	});
+}
 
 function style2(feature){
     return {
@@ -101,7 +140,7 @@ function style2(feature){
 //    return layers.feature.properties.nombre_ac}, {"className": "a_c"}).addTo(map);
 
 
-var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: onEachFeature_2,style: style2}).bindPopup(function(layer){
+var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,style: style2}).bindPopup(function(layer){
     let div = L.DomUtil.create('div');
 
     let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
@@ -197,7 +236,25 @@ function style6(feature){
         fillOpacity: 0.1
     };
 }
-var zp_ma= L.geoJson(zp_ma,{style: style6}).bindPopup(function(layers){
+
+function resetHighlight_z_p(z){
+    zp_ma.resetStyle(z.target);
+    info.update();
+}
+
+function zoomToFeature_z_p(z){
+    map.fitBounds(z.target.getBounds());
+}
+
+function onEachFeature_z_p(feature, layer){
+    layer.on({
+        mouseover: highlightFeature_2,
+        mouseout : resetHighlight_z_p,
+        click:  zoomToFeature_z_p
+    });
+}
+
+var zp_ma= L.geoJson(zp_ma,{style: style6, onEachFeature:onEachFeature_z_p }).bindPopup(function(layers){
     return layers.feature.properties.Nombre}, {"className" : "z_p"}
 ).addTo(map);
 
