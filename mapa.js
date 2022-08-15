@@ -75,8 +75,6 @@ var a_s= L.geoJson(a_s,{style: style4, onEachFeature:onEachFeature_a_s }).bindPo
 
 // area de conservacion
 
-area de conservacion
-
 function highlightFeature_2(z){
     var layer=z.target;
     layer.setStyle({
