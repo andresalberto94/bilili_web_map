@@ -21,11 +21,40 @@ var minimap = new L.Control.MiniMap(carto_light,
 
     }).addTo(map);
 
+// area de conservacion
 
+function highlightFeature_2(z){
+    var layer=z.target;
+    layer.setStyle({
+        fillColor:'white',
+        weight: 3,
+        color: '#ece2f0',
+        dashArray: '',
+        fillOpacity: '0.5'
+    });
+    info.update(layer.feature.properties);
+}
 
+var area_conservacion;
+
+function resetHighlight_2(z){
+    area_conservacion.resetStyle(z.target);
+    info.update();
+}
+
+function zoomToFeature_2(z){
+    map.fitBounds(z.target.getBounds());
+}
+
+function onEachFeature_2(feature, layer){
+    layer.on({
+        mouseover: highlightFeature_2,
+        mouseout : resetHighlight_2,
+        click:  zoomToFeature_2
+    })
+};
 
 //limite centroamerica
-
 
 //
 function style3(feature){
@@ -72,39 +101,6 @@ var a_s= L.geoJson(a_s,{style: style4, onEachFeature:onEachFeature_a_s }).bindPo
     return layers.feature.properties.nombre_asp
 }).addTo(map);
 
-
-// area de conservacion
-
-function highlightFeature_2(z){
-    var layer=z.target;
-    layer.setStyle({
-        fillColor:'white',
-        weight: 3,
-        color: '#ece2f0',
-        dashArray: '',
-        fillOpacity: '0.5'
-    });
-    info.update(layer.feature.properties);
-}
-
-var area_conservacion;
-
-function resetHighlight_2(z){
-    area_conservacion.resetStyle(z.target);
-    info.update();
-}
-
-function zoomToFeature_2(z){
-    map.fitBounds(z.target.getBounds());
-}
-
-function onEachFeature_2(feature, layer){
-    layer.on({
-        mouseover: highlightFeature_2,
-        mouseout : resetHighlight_2,
-        click:  zoomToFeature_2
-    })
-};
 
 // Crear funciones de interacción con el mouse (tema - intema - zoom)
 
