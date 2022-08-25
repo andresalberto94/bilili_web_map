@@ -125,6 +125,26 @@ background: #a1d99b;
 
 
 
+.cantones_ {
+  background: #a1d99b; border-radius: 12px;
+}
+
+.cantones_ div.leaflet-popup-tip{
+background: #a1d99b;
+}
+
+.cantones_ table{
+  margin: auto;
+}
+.cantones_ tr{
+  text-align: left;
+}
+.cantones_ th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+
 
 
 
