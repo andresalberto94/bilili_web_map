@@ -249,7 +249,56 @@ var prov= L.geoJson(prov,{style: style87, onEachFeature:onEachFeature_prov }).bi
 
 
 
-// 
+// CANTONES 
+
+function getColor(league){
+    return league == 'Heredia' ? 'red' :
+          league == 'Alajuela' ? 'blue' :
+          league == 'San José' ? 'brown' :
+          league == 'Puntarenas' ? 'yellow' :
+          league == 'Guanacaste' ? 'purple' :
+          league == 'Limón' ? 'pink' :
+          league == 'Cartago' ? 'green' :
+            'white';
+       }	
+   
+       
+
+function style77(feature){
+    return {
+        fillColor: getColor(feature.properties.provincia),
+        weight: 2,
+        opacity: 1,
+        color: '#a1d99b',
+        dashArray: '1',
+        fillOpacity: 0.4
+
+    };
+   
+}
+
+function resetHighlight_cantones_(z){
+    cantones_.resetStyle(z.target);
+    info.update();
+}
+
+function zoomToFeature_cantones_(z){
+    map.fitBounds(z.target.getBounds());
+}
+
+function onEachFeature_cantones_(feature, layer){
+    layer.on({
+        mouseover: highlightFeature_2,
+        mouseout : resetHighlight_cantones_,
+        click:  zoomToFeature_cantones_
+    });
+}
+
+var cantones_= L.geoJson(cantones_,{style: style77, onEachFeature:onEachFeature_cantones_ }).bindPopup(function(layers){
+    return layers.feature.properties.canton}, {"className" : "cantones_"}
+).addTo(map);
+
+// AREAS DE CONSERVACION PARTE 2
 
 
 
