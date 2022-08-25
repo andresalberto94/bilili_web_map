@@ -203,10 +203,10 @@ var distrito= L.geoJson(distrito,{style: style88, onEachFeature:onEachFeature_di
 function getColor(league){
     return league == 'Heredia' ? 'red' :
           league == 'Alajuela' ? 'blue' :
-          league == 'San Jose' ? 'pink' :
+          league == 'San Jose' ? 'brown' :
           league == 'Puntarenas' ? 'yellow' :
           league == 'Guanacaste' ? 'purple' :
-          league == 'Limon' ? 'gray' :
+          league == 'Limon' ? 'pink' :
           league == 'Cartago' ? 'green' :
             'white';
        }	
