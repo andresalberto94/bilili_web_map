@@ -482,8 +482,9 @@ var baseLayers = {
 
  };
  
- var overlays = {
+var overlays = {
     "Provincias": prov,
+    "Cantónes": cantones_,
     "Límite Distrital":distrito,
     "Límite de Centroamérica": ca,
     "Áreas de Conservación": area_conservacion,
@@ -507,6 +508,5 @@ var baseLayers = {
  snit.remove();
  rios.remove();
  distrito.remove();
- prov.remove();
-
+ area_conservacion.remove();
 
