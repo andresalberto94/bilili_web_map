@@ -86,6 +86,45 @@ background: #a1d99b;
 
 
 
+.dis {
+  background: #a1d99b; border-radius: 12px;
+}
+
+.dis div.leaflet-popup-tip{
+background: #a1d99b;
+}
+
+.dis table{
+  margin: auto;
+}
+.dis tr{
+  text-align: left;
+}
+.dis th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+.prov {
+  background: #a1d99b; border-radius: 12px;
+}
+
+.prov div.leaflet-popup-tip{
+background: #a1d99b;
+}
+
+.prov table{
+  margin: auto;
+}
+.prov tr{
+  text-align: left;
+}
+.prov th{
+  padding: 2px; padding-right: 8px;
+}
+
+
+
 
 
 
