@@ -226,19 +226,10 @@ var m_g= L.geoJson(m_g,{onEachFeature: compostaje_gj_onEachFeature, pointToLayer
     return layers.feature.properties.Nombre},{"className": "m_g"}).addTo(map);
 
 
-
-// wms 
-var wmsLayer = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', {
-    layers: 'SRTM30-Colored-Hillshade'
-}).addTo(map);
-
-
 // agregando control de capas y leyenda
 
 var baseLayers = {
     "Google Satelital": google,
-    "Hillshade": wmsLayer,
-
  };
  
  var overlays = {
@@ -250,8 +241,6 @@ var baseLayers = {
     "GAM":m_g,
     "Zona Protectora Maria Aguilar": zp_ma,
     "Red Hídrica": rios,
-
-
  };
     
  L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
@@ -261,7 +250,6 @@ var baseLayers = {
  m_s.remove();
  m_g.remove();
  co1.remove();
- snit.remove();
  rios.remove();
 
 
