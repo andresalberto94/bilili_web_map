@@ -228,7 +228,7 @@ var m_g= L.geoJson(m_g,{onEachFeature: compostaje_gj_onEachFeature, pointToLayer
 
 
 // wms 
-var wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
+var wmsLayer = L.tileLayer.wms('https://ows.terrestris.de/osm/service?', {
     layers: 'SRTM30-Colored-Hillshade'
 }).addTo(map);
 
