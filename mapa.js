@@ -4,12 +4,10 @@ var google=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {at
 
 }).addTo(map);
 
-
 //document.getElementById('Área de Interés').addEventListener('change', function(e){
 //    let coords = e.target.value.split(",");
 //    map.flyTo(coords,13);
 //})
-
 
 var carto_light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'})
 
@@ -23,8 +21,6 @@ var minimap = new L.Control.MiniMap(carto_light,
 
 //limite centroamerica
 
-
-//
 function style3(feature){
     return {
         weight: 2,
