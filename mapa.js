@@ -204,11 +204,6 @@ function style1(feature){
 var co1= L.geoJson(co1,{style: style1, onEachFeature: onEachFeature_1 }).bindPopup(function(layers){
     return layers.feature.properties.nombre_cb}, {"className": "co1"}).addTo(map);
 
-
-
-
-//
-
 function style5(feature){
     return {
         weight: 2,
@@ -256,7 +251,6 @@ var zp_ma= L.geoJson(zp_ma,{style: style6, onEachFeature:onEachFeature_z_p }).bi
 ).addTo(map);
 
 
-
 //rios 
 
 function style7(feature){
@@ -274,8 +268,6 @@ var rios= L.geoJson(rios,{style: style7}).bindPopup(function(layers){
 
 
 // puntos de medicion del GAM
-
-
 
 function compostaje_gj_pointToLayer( feature , latlng) {
     var opts = {};
@@ -305,8 +297,6 @@ var snit = L.tileLayer.wms('http://ceniga.go.cr/geoserver/MOCUPU/ows', {
 var wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
     layers: 'SRTM30-Colored-Hillshade'
 }).addTo(map);
-  
-  
 
 
 // agregando control de capas y leyenda
