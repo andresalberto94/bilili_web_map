@@ -43,29 +43,6 @@ function style4(feature){
     };
 }
 
-// funciones de zoom y resaltaado de bordes por medio de evento de click //
-function resetHighlight_a_s(z){
-    a_s.resetStyle(z.target);
-    info.update();
-}
-
-function zoomToFeature_a_s(z){
-    map.fitBounds(z.target.getBounds());
-}
-
-function onEachFeature_a_s(feature, layer){
-    layer.on({
-        mouseover: highlightFeature_2,
-        mouseout : resetHighlight_a_s,
-        click:  zoomToFeature_a_s
-    })
-};
-
-var a_s= L.geoJson(a_s,{style: style4, onEachFeature:onEachFeature_a_s }).bindPopup(function(layers){
-    return layers.feature.properties.nombre_asp
-}).addTo(map);
-
-
 // area de conservacion
 
 // Crear funciones de interacción con el mouse (tema - intema - zoom)
@@ -212,40 +189,6 @@ function style5(feature){
 var m_s= L.geoJson(m_s,{style: style2}).bindPopup(function(layers){
     return layers.feature.properties.name
 }).addTo(map);
-
-
-//zona_protectora
-function style6(feature){
-    return {
-        weight: 2,
-        opacity: 2,
-        color: '#a1d99b',
-        dashArray: '1',
-        fillOpacity: 0.1
-    };
-}
-
-function resetHighlight_z_p(z){
-    zp_ma.resetStyle(z.target);
-    info.update();
-}
-
-function zoomToFeature_z_p(z){
-    map.fitBounds(z.target.getBounds());
-}
-
-function onEachFeature_z_p(feature, layer){
-    layer.on({
-        mouseover: highlightFeature_2,
-        mouseout : resetHighlight_z_p,
-        click:  zoomToFeature_z_p
-    });
-}
-
-var zp_ma= L.geoJson(zp_ma,{style: style6, onEachFeature:onEachFeature_z_p }).bindPopup(function(layers){
-    return layers.feature.properties.Nombre}, {"className" : "z_p"}
-).addTo(map);
-
 
 //rios 
 
