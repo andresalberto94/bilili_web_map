@@ -21,9 +21,6 @@ var minimap = new L.Control.MiniMap(carto_light,
 
     }).addTo(map);
 
-
-
-
 //limite centroamerica
 
 
