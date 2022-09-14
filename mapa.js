@@ -227,12 +227,7 @@ var m_g= L.geoJson(m_g,{onEachFeature: compostaje_gj_onEachFeature, pointToLayer
 
 
 
-  // wms 
-var snit = L.tileLayer.wms('http://ceniga.go.cr/geoserver/MOCUPU/ows', {
-    layers: 'tramaverde_cbima_2021_conDTA',
-    trasparent: true,
-}).addTo(map);
-
+// wms 
 var wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
     layers: 'SRTM30-Colored-Hillshade'
 }).addTo(map);
