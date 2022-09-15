@@ -4,6 +4,8 @@ var google=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {at
 
 }).addTo(map);
 
+var carto_light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'})
+
 var minimap = new L.Control.MiniMap(carto_light,
     {
         toggleDisplay: true,
