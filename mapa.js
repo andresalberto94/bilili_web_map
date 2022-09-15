@@ -1,7 +1,11 @@
 
 var map = L.map('map').setView([9.69957,-83.50116],8.2)
-var google=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
 
+var google=L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+}).addTo(map);
+
+var wmsLayer = L.tileLayer.wms('http://ows.mundialis.de/services/service?', {
+    layers: 'TOPO-OSM-WMS'
 }).addTo(map);
 
 var carto_light = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'})
@@ -104,6 +108,7 @@ var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,st
 
 var baseLayers = {
     "Google Satelital": google,
+	"Topo OSM": wmsLayer
  };
  
  var overlays = {
