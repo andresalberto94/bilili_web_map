@@ -18,12 +18,12 @@ var minimap = new L.Control.MiniMap(carto_light,
 
     }).addTo(map);
 
-// area de conservacion
+// Area de conservacion
 
 // Crear funciones de interacción con el mouse (tema - intema - zoom)
 
 // Función tema de zoom
-function highlight (layer) {
+function highlight_ac (layer) {
 	layer.setStyle({
         weight: 3,
         color: '#ece2f0',
@@ -35,46 +35,41 @@ function highlight (layer) {
 	}
 }
 
-function resetHighlight(e) {
-    var layer = e.target;
-    layer.setStyle(StyleDefault);
-}
-
 // Función reseteo de tema
-function dehighlight (layer) {
-  if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
-	area_conservacion.resetStyle(layer)
+function dehighlight_ac (layer) {
+  if (selected_ac === null || selected_ac._leaflet_id !== layer._leaflet_id) {
+	area_conservacion.resetStyle(layer);
   }
 }
 
 // Función de zoom (fitBounds, flyToBounds)
-function select (layer) {
-  if (selected !== null) {
-	var previous = selected;
+function select_ac (layer) {
+  if (selected_ac !== null) {
+	var previous_ac = selected_ac;
   }
 	map.flyToBounds(layer.getBounds());
-	selected = layer;
-	if (previous) {
-	  dehighlight(previous);
+	selected_ac = layer;
+	if (previous_ac) {
+	  dehighlight_ac(previous_ac);
 	}
 }
 
 // Función de features parta ingresar en onEachFeature dentro de L.geojson
-function on_feature (feature, layer) {
+function on_feature_ac (feature, layer) {
 	layer.on({
 		'mouseover': function (e) {
-		highlight(e.target);
+		highlight_ac(e.target);
 		},
 		'mouseout': function (e) {
-		dehighlight(e.target);
+		dehighlight_ac(e.target);
 		},
 		'click': function (e) {
-		select(e.target);
+		select_ac(e.target);
 		}
 	});
 }
 
-var selected = null;
+var selected_ac = null;
 
 // Estilo áreas de Conservación
 
@@ -89,7 +84,7 @@ function style_ac(feature){
     };
 }
 
-var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,style: style_ac}).bindPopup(function(layer){
+var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature_ac,style: style_ac}).bindPopup(function(layer){
     let div = L.DomUtil.create('div');
 
     let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
@@ -110,6 +105,57 @@ var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,st
     return div
     }
     ,{"className": "a_c"}).addTo(map);
+
+// Provincia ------------------------------------------------------------------------------------------------
+
+// Función tema de zoom
+function highlight_prov (layer) {
+	layer.setStyle({
+        weight: 3,
+        color: '#ece2f0',
+        dashArray: '',
+        fillOpacity: '0'
+	});
+	if (!L.Browser.ie && !L.Browser.opera) {
+		layer.bringToFront();
+	}
+}
+
+// Función reseteo de tema
+function dehighlight_prov (layer) {
+  if (selected_prov === null || selected_prov._leaflet_id !== layer._leaflet_id) {
+	prov.resetStyle(layer);
+  }
+}
+
+// Función de zoom (fitBounds, flyToBounds)
+function select_prov (layer) {
+  if (selected_prov !== null) {
+	var previous_prov = selected_prov;
+  }
+	map.flyToBounds(layer.getBounds());
+	selected_prov = layer;
+	if (previous_prov) {
+	  dehighlight_prov(previous_prov);
+	}
+}
+
+// Función de features parta ingresar en onEachFeature dentro de L.geojson
+function on_feature_prov (feature, layer) {
+	layer.on({
+		'mouseover': function (e) {
+		highlight_prov(e.target);
+		},
+		'mouseout': function (e) {
+		dehighlight_prov(e.target);
+		},
+		'click': function (e) {
+		select_prov(e.target);
+		}
+	});
+}
+
+var selected_prov = null;
 
 // Estilo Provincias
 
@@ -135,10 +181,11 @@ function style_prov(feature){
     };
 }
 
-var prov= L.geoJson(prov,{style: style_prov}).bindPopup(function(layers){
+var prov= L.geoJson(prov,{style: style_prov, onEachFeature: on_feature_prov}).bindPopup(function(layers){
     return layers.feature.properties.provincia}, {"className" : "prov"}
 ).addTo(map);
 
+// ------------------------------------------------------------------------------------------------------------------
 
 // agregando control de capas y leyenda
 
@@ -154,5 +201,6 @@ var baseLayers = {
     
 L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
 area_conservacion.bringToFront();
+wmsLayer.remove();
 prov.remove();
  
