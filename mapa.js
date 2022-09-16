@@ -35,14 +35,19 @@ function highlight (layer) {
 	}
 }
 
+function resetHighlight(e) {
+    var layer = e.target;
+    layer.setStyle(StyleDefault);
+}
+
 // Función reseteo de tema
 function dehighlight (layer) {
   if (selected === null || selected._leaflet_id !== layer._leaflet_id) {
-	  area_conservacion.resetStyle(layer);
+	area_conservacion.resetStyle(layer)
   }
 }
 
-// Fución de zoom (fitBounds, flyToBounds)
+// Función de zoom (fitBounds, flyToBounds)
 function select (layer) {
   if (selected !== null) {
 	var previous = selected;
@@ -54,9 +59,7 @@ function select (layer) {
 	}
 }
 
-var selected = null;
-
-// Función de features parta ingresar en onEachFeature dentor de L.geojson
+// Función de features parta ingresar en onEachFeature dentro de L.geojson
 function on_feature (feature, layer) {
 	layer.on({
 		'mouseover': function (e) {
@@ -71,7 +74,11 @@ function on_feature (feature, layer) {
 	});
 }
 
-function style2(feature){
+var selected = null;
+
+// Estilo áreas de Conservación
+
+function style_ac(feature){
     return {
         fillColor: '#31a354',
         weight: 3,
@@ -82,7 +89,7 @@ function style2(feature){
     };
 }
 
-var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,style: style2}).bindPopup(function(layer){
+var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,style: style_ac}).bindPopup(function(layer){
     let div = L.DomUtil.create('div');
 
     let handleObject = feature=>typeof(feature)=='object' ? JSON.stringify(feature) : feature;
@@ -104,6 +111,35 @@ var area_conservacion= L.geoJson(area_conservacion,{onEachFeature: on_feature,st
     }
     ,{"className": "a_c"}).addTo(map);
 
+// Estilo Provincias
+
+function getColor(league){
+    return league == 'Heredia' ? '#B43139' :
+          league == 'Alajuela' ? '#283E93' :
+          league == 'San José' ? '#755142' :
+          league == 'Puntarenas' ? '#F0C816' :
+          league == 'Guanacaste' ? '#C25397' :
+          league == 'Limón' ? '#C79381' :
+          league == 'Cartago' ? '#459449' :
+            '#F3F3F3';
+}
+	   
+function style_prov(feature){
+    return {
+        fillColor: getColor(feature.properties.provincia),
+        weight: 2,
+        opacity: 1,
+        color: '#a1d99b',
+        dashArray: '1',
+        fillOpacity: 0.4
+    };
+}
+
+var prov= L.geoJson(prov,{style: style_prov}).bindPopup(function(layers){
+    return layers.feature.properties.provincia}, {"className" : "prov"}
+).addTo(map);
+
+
 // agregando control de capas y leyenda
 
 var baseLayers = {
@@ -113,8 +149,10 @@ var baseLayers = {
  
  var overlays = {
     "Áreas de Conservación": area_conservacion,
+	"Provincias": prov
  };
     
- L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
- area_conservacion.bringToFront();
+L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
+area_conservacion.bringToFront();
+prov.remove();
  
