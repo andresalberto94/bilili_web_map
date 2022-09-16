@@ -84,10 +84,23 @@ background: #a1d99b;
   padding: 2px; padding-right: 8px;
 }
 
+.prov {
+  background: #a1d99b; border-radius: 12px;
+}
 
+.prov div.leaflet-popup-tip{
+background: #a1d99b;
+}
 
-
-
+.prov table{
+  margin: auto;
+}
+.prov tr{
+  text-align: left;
+}
+.prov th{
+  padding: 2px; padding-right: 8px;
+}
 
 #html, body, #leaflet-map {
     height: 100%;
