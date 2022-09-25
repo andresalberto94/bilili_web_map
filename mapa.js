@@ -195,12 +195,28 @@ var baseLayers = {
  };
  
  var overlays = {
-    "Áreas de Conservación": area_conservacion,
+	"Conservación": {
+		 "Áreas de Conservación": area_conservacion,
+	},
+	"Div Administrativa": {
 	"Provincias": prov
+	}
  };
     
-L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
+// L.control.layers(baseLayers, overlays, { collapsed:false, position:'bottomleft' }).addTo(map);
+// area_conservacion.bringToFront();
+// wmsLayer.remove();
+// prov.remove();
+
+var options = {
+  // enable basic collapsability
+  groupsCollapsable: true,
+  position:'bottomleft',
+  collapsed: false
+};
+
+// Source: https://github.com/NHellFire/leaflet-groupedlayercontrol
+L.control.groupedLayers(baseLayers, overlays, options).addTo(map);
 area_conservacion.bringToFront();
 wmsLayer.remove();
-prov.remove();
- 
+prov.remove(); 

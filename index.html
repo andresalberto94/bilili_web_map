@@ -10,10 +10,10 @@
     crossorigin=""/>
     <link rel="stylesheet" type="text/css" href="mapa.css">
     <link rel="stylesheet" type="text/css" href="Control.MiniMap.css">
+	<link rel="stylesheet" href="dist/leaflet.groupedlayercontrol.min.css"/>
     <link rel="stylesheet" type="text/css" href="leaflet.awesome-markers.css">
-  </style>
-
 </head>
+
 <body>
     <div id='leaflet-map'></div>
     <div class='button-line'>
@@ -43,8 +43,9 @@
     <script type="text/javascript" src="leaflet.awesome-markers.js"></script>
 	<script type="text/javascript" src="layers/prov.js"></script>
 
-    <script src="mapa.js"></script>
-    <script src='https://unpkg.com/leaflet@1.0.3/dist/leaflet.js'></script>
+    <script src="dist/leaflet.groupedlayercontrol.min.js"></script>
+	<script src="mapa.js"></script>
+	<script src='https://unpkg.com/leaflet@1.0.3/dist/leaflet.js'></script>
     <script src='https://unpkg.com/jquery@3.2.1/dist/jquery.min.js'></script>
     
 </body>
@@ -76,8 +77,6 @@
       map.flyTo(m_g, 13);
     });
   
-  
-
     var deactivate = function(){
       var center   = map.getCenter();
       $(all_buttons).removeClass('pure-button-disabled');
